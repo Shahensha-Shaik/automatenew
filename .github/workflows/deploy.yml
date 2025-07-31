@@ -26,9 +26,10 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Upload static site files
-        uses: actions/upload-pages-artifact@v1
+        uses: actions/upload-pages-artifact@v1  # ✅ Correct and active
+
         with:
-          path: '.'  # This assumes index.html is at root
+          path: '.'  # Assuming index.html is in root
 
       - name: Deploy to GitHub Pages
         id: deployment
