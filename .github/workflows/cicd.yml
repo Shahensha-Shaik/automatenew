@@ -1,8 +1,9 @@
-name: Deploy GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 permissions:
   contents: read
@@ -13,13 +14,15 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v1  # ✅ Corrected from v4 to v1
         with:
-          path: .
+          path: '.'  # Adjust if your site files are in a subfolder
 
       - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v3
